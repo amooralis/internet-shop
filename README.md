@@ -9,7 +9,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-<img width="731" alt="Снимок экрана 2024-05-10 в 18 34 32" src="https://github.com/amooralis/Internet-shop/assets/71789031/c56cca8e-5bea-41c5-8f76-8d2589638d71">
+<img width="1440" alt="Снимок экрана 2024-05-10 в 18 36 10" src="https://github.com/amooralis/Internet-shop/assets/71789031/43466260-1a3e-453c-b74c-76709b36ab08">
 
 
 <img width="1422" alt="Снимок экрана 2024-05-10 в 18 28 42" src="https://github.com/amooralis/Internet-shop/assets/71789031/c6b1c576-4e89-4c09-89e1-24c585376f59">
