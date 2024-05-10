@@ -1,0 +1,56 @@
+{
+  "proxy": "http://localhost:3456",
+  "dbr": "yarn sequelize db:drop && yarn sequelize db:create && yarn sequelize db:migrate && yarn sequelize db:seed:all",
+  "name": "day10",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.2",
+    "browserify-zlib": "^0.2.0",
+    "cors": "^2.8.5",
+    "crypto-browserify": "^3.12.0",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "path-browserify": "^1.0.1",
+    "pg": "^8.11.3",
+    "querystring-es3": "^0.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.19.0",
+    "react-router-dom": "^6.19.0",
+    "react-scripts": "5.0.1",
+    "sequelize": "^6.35.1",
+    "sequelize-cli": "^6.6.2",
+    "session-file-store": "^1.5.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
