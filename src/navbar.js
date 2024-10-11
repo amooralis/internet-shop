@@ -32,11 +32,11 @@ export default function Navbar() {
     return (
         <div className="navbar">
             <h2 onClick={redirectToMain}>Shop.</h2>
-            <div className="icons">
+
                 <img onClick={redirectToOrders} src={orders} alt="картинка"/>
                 <img onClick={redirectToCart} src={basket} alt="картинка"/>
                 <img onClick={logout} src={exit} alt="картинка"/>
-            </div>
+
         </div>
     )
 }

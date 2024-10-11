@@ -63,9 +63,8 @@ sequelize.authenticate()
 
 User.sync();
 Order.sync();
-Cart.sync();
 Product.sync();
-ProductCart.sync();
+
 
 
 sequelize.sync()
@@ -135,99 +134,13 @@ app.get("/products/:id", async (req, res) => {
     res.json(product);
 })
 
-app.post("/cart", async (req, res) => {
-    const newCart = await Cart.create({
-        userId: req.body.userId,
-        products: [req.body.products],
-    });
-    res.json(newCart);
-})
-
-app.get("/cart", async (req, res) => {
-    const myCart = await Cart.findOne({where: {userId: req.query.userId}});
-    res.json(myCart);
-})
 
 
-app.put("/cart", async (req, res) => {
-    try {
-        let existingCart = await Cart.findOne({
-            where: { userId: req.body.userId },
-        });
-
-        const cartInOrder = await Order.findOne({
-            where: { cartId: existingCart.id },
-        });
-
-        if (cartInOrder) {
-            console.log("Корзина уже используется в заказе, создаем новую");
-            // Создаем новую корзину и добавляем к ней продукты
-            const newCart = await Cart.create({
-                userId: req.body.userId,
-                products: req.body.products,
-            });
-            await newCart.save();
-            res.json(newCart);
-            return;
-        }
-
-
-        console.log("Добавляем продукты к существующей корзине");
-        existingCart.products = existingCart.products.concat(req.body.products);
-        await existingCart.save();
-        res.json(existingCart);
-    } catch (error) {
-        console.error("Error updating cart", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-});
-
-
-app.delete("/cart/:productId", async (req, res) => {
-    try {
-        const userId = req.query.userId;
-        const productId = req.params.productId;
-
-        console.log(productId);
-        const userCart = await Cart.findOne({
-            where: { userId: userId },
-        });
-
-        if (!userCart) {
-            return res.status(404).json({ error: "Cart not found" });
-            console.log("нет корзины");
-        }
-
-        const productIds = userCart.products.map(product => product.id);
-        const indexToRemove = productIds.lastIndexOf(parseInt(productId));
-
-        if (indexToRemove !== -1) {
-            userCart.products.splice(indexToRemove, 1);
-        }
-
-        const count = await Cart.update({
-            id: userCart.id,
-            userId: userCart.userId,
-            products: userCart.products,
-        }, {
-            where: {userId: userId},
-        })
-
-        const userCartTest = await Cart.findOne({
-            where: { userId: userId },
-        });
-
-        res.status(200).json(userCartTest);
-    } catch (error) {
-        console.error("Error removing product from the cart:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-});
 
 app.post("/my-orders", async (req, res) => {
     const newOrder = await Order.create({
         userId: req.body.userId,
-        cartId: req.body.cartId,
+        cart: req.body.cart,
     });
     res.json(newOrder);
 })
@@ -239,12 +152,6 @@ app.get("/my-orders/:userId", async (req, res) => {
     try {
         const userOrders = await Order.findAll({
             where: {userId: userId},
-            include: [
-                {
-                    model: Cart,
-                    as: 'cart',
-                }
-            ]
         });
 
         if (userOrders.length === 0) {

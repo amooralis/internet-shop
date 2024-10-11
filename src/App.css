@@ -48,6 +48,10 @@ html {
     box-sizing: border-box;
 }
 
+body {
+    width: 100vw;
+}
+
 .form {
     display: flex;
     align-items: center;
@@ -114,36 +118,37 @@ a {
     padding: 20px 0;
     align-items: center;
     border-bottom: 2px solid #FAF6F0;
+    width: 100vw;
 }
 
-.icons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-right: 20px;
-}
+/*.icons {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: space-between;*/
+/*    margin-right: 20px;*/
+/*}*/
 
-.icons img {
+.navbar img {
     width: 40px;
-    margin-right: 30px;
+    /*margin-right: 30px;*/
 }
 
 h2 {
     font-size: 30px;
-    margin-left: 50px;
+    margin-left: 5%;
     background-color: black;
     padding: 5px 50px;
     color: #FAF6F0;
 }
 
 .main-first-line {
-    padding: 10px 0;
+    padding: 1%;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    padding-right: 15%;
     background-color: black;
     align-items: center;
+    justify-content: center;
+    width: 100vw;
 }
 
 .search-input {
@@ -151,9 +156,10 @@ h2 {
     border: 3px solid #F4DFC8;
     border-radius: 5px;
     width: 25%;
-    min-width: 210px;
+    min-width: 150px;
     font-size: 16px;
     background-color: #FAF6F0;
+    /*margin-right: 5%;*/
 }
 
 .filter-select {
@@ -161,7 +167,7 @@ h2 {
     border: 3px solid #F4DFC8;
     border-radius: 5px;
     width: 20%;
-    min-width: 180px;
+    min-width: 160px;
     font-size: 16px;
     background-color: #FAF6F0;
 }
@@ -175,9 +181,8 @@ h2 {
 
 .product-page {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     background-color: black;
-    height: 100vh;
 }
 
 .product-card {
@@ -245,6 +250,21 @@ h2 {
     background-color: lawngreen;
     border: 2px solid lawngreen;
     font-weight: bold;
+}
+
+.little-btn{
+    /*margin-top: 10px;*/
+    /*justify-self: flex-end;*/
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+
+    text-align: center;
+    margin: 10px 5px 0 5px;
+    background-color: lawngreen;
+    border: 2px solid lawngreen;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .full-card-page {

@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 export default function MainPage() {
     const [selectedSortOption, setSelectedSortOption] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
-    // const [cart, setCart] = useState([]); // New state for the shopping cart
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || { products: [] });
 
     const handleSortChange = (value) => {
         setSelectedSortOption(value);
@@ -19,63 +19,61 @@ export default function MainPage() {
         setSearchQuery(value);
     };
 
-    const addToCart = async (event, product) => {
+
+    const addToCart = (event, product) => {
         event.preventDefault();
-        try {
-            const cart = await axios.get("http://localhost:3456/cart", {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                withCredentials: true,
-                params: {
-                    userId: localStorage.getItem("userId"),
-                },
-            });
 
-            if (!cart.data) {
-                const cart = await axios.post("http://localhost:3456/cart", {
-                    userId: localStorage.getItem("userId"),
-                    products: product,
-                });
-                console.log(cart);
-            } else {
-                const userId = localStorage.getItem("userId");
-                console.log("UserId:", userId);
-                const cart = await axios.put("http://localhost:3456/cart", {
-                    userId: localStorage.getItem("userId"),
-                    products: product,
-                });
+        let updatedCart = { ...cart };
+        const existingProduct = updatedCart.products.find(p => p.id === product.id);
 
-                const updatedProducts = cart.data.products.reduce((accumulator, product) => {
-                    const existingProduct = accumulator.find((p) => p.id === product.id);
+        if (existingProduct) {
+            existingProduct.quantity += 1;
+        } else {
+            product.quantity = 1;
+            updatedCart.products.push(product);
+        }
 
-                    if (existingProduct) {
-                        existingProduct.quantity += 1;
-                    } else {
-                        accumulator.push({ ...product, quantity: 1 });
-                    }
+        setCart(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+    };
 
-                    return accumulator;
-                }, []);
+    const updateCartQuantity = (productId, change) => {
+        let updatedCart = { ...cart };
+        const productIndex = updatedCart.products.findIndex(p => p.id === productId);
 
-                const updatedCart = {
-                    ...cart.data,
-                    products: updatedProducts,
-                };
+        if (productIndex !== -1) {
+            updatedCart.products[productIndex].quantity += change;
 
-                console.log(updatedCart);
+            if (updatedCart.products[productIndex].quantity <= 0) {
+                updatedCart.products.splice(productIndex, 1);
             }
 
-        } catch (error) {
-            console.error("Error adding product to cart", error);
+            setCart(updatedCart);
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
         }
-    }
+    };
+
+    // Обновление состояния корзины при изменении localStorage
+    useEffect(() => {
+        const storedCart = JSON.parse(localStorage.getItem('cart'));
+        if (storedCart) {
+            setCart(storedCart);
+        }
+    }, []);
+
 
     return (
         <>
             <Navbar/>
             <SearchLine handleSortChange={handleSortChange} handleSearchChange={handleSearchChange}/>
-            <ProductsList selectedSortOption={selectedSortOption} searchQuery={searchQuery} addToCart={addToCart}/>
+            <ProductsList
+                selectedSortOption={selectedSortOption}
+                searchQuery={searchQuery}
+                cart={cart}
+                addToCart={addToCart}
+                updateCartQuantity={updateCartQuantity}
+            />
+
         </>
     )
 }
@@ -100,7 +98,7 @@ function SearchLine({handleSortChange, handleSearchChange}) {
 }
 
 
-function ProductsList({selectedSortOption, searchQuery, addToCart}) {
+function ProductsList({selectedSortOption, searchQuery, addToCart, updateCartQuantity}) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -133,31 +131,47 @@ function ProductsList({selectedSortOption, searchQuery, addToCart}) {
     };
 
 
+
     return (
         <div className="product-page">
-            {sortedProducts().map((product, i) => (
-                <Link
-                    to={`/products/${product.id}`}
-                    key={product.id}
-                    className="product-link"
-                    style={{textDecoration: 'none'}}
-                    product={product}
-                >
-                    <div className="product-card">
-                        <div className="product-info">
-                            <img src={product.image} alt="картинка"/>
-                            <p className="product-info-title"><b>{product.title}</b></p>
-                            <p>{product.description}</p>
-                        </div>
+            {sortedProducts().map((product, i) => {
+                // Получаем корзину и проверяем наличие продукта в ней
+                const cart = JSON.parse(localStorage.getItem('cart')) || { products: [] };
+                const cartProduct = cart.products.find(p => p.id === product.id);
+                const quantity = cartProduct ? cartProduct.quantity : 0;
+
+                return (
+                    <div key={product.id} className="product-card">
+                        <Link
+                            to={`/products/${product.id}`}
+                            className="product-link"
+                            style={{ textDecoration: 'none' }}
+                        >
+                            <div className="product-info">
+                                <img src={product.image} alt="картинка" />
+                                <p className="product-info-title"><b>{product.title}</b></p>
+                                <p>{product.description}</p>
+                            </div>
+                        </Link>
 
                         <div className="product-card-bottom">
                             <p><b>{product.price}</b></p>
-                            <button onClick={e => addToCart(e, product)} className="add-in-cart-btn">В корзину
-                            </button>
+                            {quantity > 0 ? (
+                                <div className="quantity-controls">
+                                    <button className="little-btn" onClick={() => updateCartQuantity(product.id, -1)}>-</button>
+                                    <span>{quantity}</span>
+                                    <button className="little-btn" onClick={() => updateCartQuantity(product.id, 1)}>+</button>
+                                </div>
+                            ) : (
+                                <button onClick={e => addToCart(e, product)} className="add-in-cart-btn">
+                                    В корзину
+                                </button>
+                            )}
                         </div>
                     </div>
-                </Link>
-            ))}
+                );
+            })}
         </div>
-    )
+    );
+
 }
