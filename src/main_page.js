@@ -5,11 +5,12 @@ import axios from "axios";
 import search from "./search.png"
 import sort from "./sort.png"
 import {Link} from "react-router-dom";
+import Footer from "./footer";
 
 export default function MainPage() {
     const [selectedSortOption, setSelectedSortOption] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || { products: [] });
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || {products: []});
 
     const handleSortChange = (value) => {
         setSelectedSortOption(value);
@@ -23,7 +24,7 @@ export default function MainPage() {
     const addToCart = (event, product) => {
         event.preventDefault();
 
-        let updatedCart = { ...cart };
+        let updatedCart = {...cart};
         const existingProduct = updatedCart.products.find(p => p.id === product.id);
 
         if (existingProduct) {
@@ -38,7 +39,7 @@ export default function MainPage() {
     };
 
     const updateCartQuantity = (productId, change) => {
-        let updatedCart = { ...cart };
+        let updatedCart = {...cart};
         const productIndex = updatedCart.products.findIndex(p => p.id === productId);
 
         if (productIndex !== -1) {
@@ -63,7 +64,7 @@ export default function MainPage() {
 
 
     return (
-        <>
+        <div className="page">
             <Navbar/>
             <SearchLine handleSortChange={handleSortChange} handleSearchChange={handleSearchChange}/>
             <ProductsList
@@ -73,27 +74,33 @@ export default function MainPage() {
                 addToCart={addToCart}
                 updateCartQuantity={updateCartQuantity}
             />
+            <Footer/>
 
-        </>
+        </div>
     )
 }
 
 function SearchLine({handleSortChange, handleSearchChange}) {
     return (
-        <div className="main-first-line">
-            <input
-                className="search-input"
-                placeholder="Search products..."
-                onChange={(e) => handleSearchChange(e.target.value)}
-            />
-            <img type="search" src={search} alt="иконка"/>
-            <select onChange={(e) => handleSortChange(Number(e.target.value))} className="filter-select">
-                <option value={0}>по популярности</option>
-                <option value={1}>по убыванию цены</option>
-                <option value={2}>по возрастанию цены</option>
-            </select>
-            <img src={sort} alt="иконка"/>
-        </div>
+        <header className="main-first-line">
+            <div className="search-part">
+                <input
+                    className="search-input"
+                    placeholder="Search products..."
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                />
+                <img type="search" src={search} alt="иконка"/>
+            </div>
+            <div className="search-part">
+                <select onChange={(e) => handleSortChange(Number(e.target.value))} className="filter-select">
+                    <option value={0}>по популярности</option>
+                    <option value={1}>по убыванию цены</option>
+                    <option value={2}>по возрастанию цены</option>
+                    <option value={3}>по названию</option>
+                </select>
+                <img src={sort} alt="иконка"/>
+            </div>
+        </header>
     )
 }
 
@@ -104,13 +111,16 @@ function ProductsList({selectedSortOption, searchQuery, addToCart, updateCartQua
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get("http://localhost:3456/products", {
+                const response = await axios.get("https://webapi.omoloko.ru/api/v1/products", {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    withCredentials: true,
+                    params: {
+                        limit: 10,
+                    },
                 });
-                const filteredProducts = response.data.filter((product) =>
+                console.log(response);
+                const filteredProducts = response.data.products.filter((product) =>
                     product.title.toLowerCase().includes(searchQuery.toLowerCase())
                 );
                 setProducts(filteredProducts);
@@ -123,44 +133,51 @@ function ProductsList({selectedSortOption, searchQuery, addToCart, updateCartQua
 
     const sortedProducts = () => {
         if (selectedSortOption === 1) {
-            return products.slice().sort((a, b) => b.price - a.price);
+            return products.slice().sort((a, b) => b.cost - a.cost);
         } else if (selectedSortOption === 2) {
-            return products.slice().sort((a, b) => a.price - b.price);
+            return products.slice().sort((a, b) => a.cost - b.cost);
+        } else if (selectedSortOption === 3) {
+            return products.slice().sort((a, b) => a.title.localeCompare(b.title));
         }
         return products;
     };
 
 
-
     return (
-        <div className="product-page">
+        <section className="product-page">
             {sortedProducts().map((product, i) => {
                 // Получаем корзину и проверяем наличие продукта в ней
-                const cart = JSON.parse(localStorage.getItem('cart')) || { products: [] };
+                const cart = JSON.parse(localStorage.getItem('cart')) || {products: []};
                 const cartProduct = cart.products.find(p => p.id === product.id);
                 const quantity = cartProduct ? cartProduct.quantity : 0;
 
                 return (
-                    <div key={product.id} className="product-card">
+                    <article key={product.id} className="product-card">
                         <Link
-                            to={`/products/${product.id}`}
+                            to={{
+                                pathname: `/products/${product.id}`,
+                                state: { addToCart }
+                            }}
                             className="product-link"
-                            style={{ textDecoration: 'none' }}
+                            style={{textDecoration: 'none'}}
                         >
                             <div className="product-info">
-                                <img src={product.image} alt="картинка" />
+                                <img src={product.image} alt="картинка"/>
                                 <p className="product-info-title"><b>{product.title}</b></p>
                                 <p>{product.description}</p>
                             </div>
                         </Link>
 
                         <div className="product-card-bottom">
-                            <p><b>{product.price}</b></p>
+                            <p className="product-price"><b>{product.cost} руб.</b></p>
                             {quantity > 0 ? (
                                 <div className="quantity-controls">
-                                    <button className="little-btn" onClick={() => updateCartQuantity(product.id, -1)}>-</button>
-                                    <span>{quantity}</span>
-                                    <button className="little-btn" onClick={() => updateCartQuantity(product.id, 1)}>+</button>
+                                    <button className="little-btn"
+                                            onClick={() => updateCartQuantity(product.id, -1)}>-
+                                    </button>
+                                    <span className="product-quantity">{quantity}</span>
+                                    <button className="little-btn" onClick={() => updateCartQuantity(product.id, 1)}>+
+                                    </button>
                                 </div>
                             ) : (
                                 <button onClick={e => addToCart(e, product)} className="add-in-cart-btn">
@@ -168,10 +185,10 @@ function ProductsList({selectedSortOption, searchQuery, addToCart, updateCartQua
                                 </button>
                             )}
                         </div>
-                    </div>
+                    </article>
                 );
             })}
-        </div>
+        </section>
     );
 
 }

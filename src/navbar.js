@@ -1,17 +1,23 @@
 import './App.css';
 import basket from "./basket.png"
 import orders from "./order.png"
-import exit from "./exit.png"
 import {useNavigate} from 'react-router-dom';
-import axios from "axios";
+import {useEffect, useState} from "react";
 
 export default function Navbar() {
 
     const navigate = useNavigate();
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || {products: []});
 
-    const redirectToOrders = () => {
-        navigate('/orders');
+    // Функция для обновления корзины из localStorage
+    const updateCartFromLocalStorage = () => {
+        const updatedCart = JSON.parse(localStorage.getItem('cart')) || {products: []};
+        setCart(updatedCart);
     };
+
+    useEffect(() => {
+        updateCartFromLocalStorage();
+    }, [localStorage.getItem('cart')]);
 
     const redirectToCart = () => {
         navigate('/cart');
@@ -21,23 +27,20 @@ export default function Navbar() {
         navigate('/');
     }
 
-    function logout() {
-        axios.get("http://localhost:3456/logout")
-            .then(() => {
-                localStorage.setItem("userId", null);
-                navigate('/login');
-            })
-    }
+
+
+
 
     return (
-        <div className="navbar">
-            <h2 onClick={redirectToMain}>Shop.</h2>
+        <nav className="navbar">
+            <a><h2 onClick={redirectToMain}>Shop.</h2></a>
 
-                <img onClick={redirectToOrders} src={orders} alt="картинка"/>
+
+            <a className="cart-nav-container">
                 <img onClick={redirectToCart} src={basket} alt="картинка"/>
-                <img onClick={logout} src={exit} alt="картинка"/>
-
-        </div>
+                <p className="cart-bubble">{cart.products.reduce((acc, product) => acc + product.quantity, 0)}</p>
+            </a>
+        </nav>
     )
 }
 

@@ -6,15 +6,12 @@ import axios from "axios";
 
 export default function Cart() {
     const navigate = useNavigate();
-    const redirectToOrders = () => {
-        navigate('/orders');
-    };
 
     // Инициализация состояния корзины
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || { products: [] });
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || {products: []});
 
     const updateCartQuantity = (productId, change) => {
-        let updatedCart = { ...cart };
+        let updatedCart = {...cart};
         const productIndex = updatedCart.products.findIndex(p => p.id === productId);
 
         if (productIndex !== -1) {
@@ -32,7 +29,7 @@ export default function Cart() {
     };
 
     const deleteFromCart = (productId) => {
-        let updatedCart = { ...cart };
+        let updatedCart = {...cart};
         updatedCart.products = updatedCart.products.filter(p => p.id !== productId);
         setCart(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
@@ -40,20 +37,6 @@ export default function Cart() {
 
 
 
-    const createOrder = async () => {
-        try {
-            console.log("userId:",  localStorage.getItem('userId'));
-            console.log("cart:",  localStorage.getItem('cart'));
-            const newOrder = await axios.post("http://localhost:3456/my-orders",
-                {userId: localStorage.getItem('userId'), cart: JSON.parse(localStorage.getItem('cart'))})
-            console.log("Заказ:", newOrder.data);
-            localStorage.removeItem('cart');
-            setCart({ products: [] });
-            redirectToOrders();
-        } catch (error) {
-            console.error("Error creating order", error);
-        }
-    };
 
     return (
         <>
@@ -62,18 +45,24 @@ export default function Cart() {
                 <div className="cart-products">
                     {cart.products.length > 0 ? cart.products.map((product) => (
                         <div className="cart-position" key={product.id}>
-                            <p className="cart-position-title"><b>{product.title}</b></p>
-                            <img src={product.image} alt="картинка" />
-                            <p>{product.description}</p>
-                            <p className="cart-position-price"><b>{product.price} руб.</b></p>
-                            <div className="cart-btns">
-                                <button onClick={() => updateCartQuantity(product.id, -1)} className="cart-btn">-</button>
-                                <p className="cart-btns-quantity">{product.quantity}</p>
-                                <button onClick={() => updateCartQuantity(product.id, 1)} className="cart-btn">+</button>
+
+                            <div className="cart-position-inner" key={product.id}>
+                                <button onClick={() => deleteFromCart(product.id)} className="cart-btn delete-btn">
+                                    X
+                                </button>
+
+                                <img src={product?.image} alt="картинка"/>
+                                <p className="cart-position-title"><b>{product.title}</b></p>
+                                {/*<div></div>*/}
+                                <p className="cart-position-price"><b>{product.cost} руб.</b></p>
+                                <div className="cart-btns">
+                                    <button onClick={() => updateCartQuantity(product.id, -1)} className="cart-btn">-
+                                    </button>
+                                    <p className="cart-btns-quantity">{product.quantity}</p>
+                                    <button onClick={() => updateCartQuantity(product.id, 1)} className="cart-btn">+
+                                    </button>
+                                </div>
                             </div>
-                            <button onClick={() => deleteFromCart(product.id)} className="cart-btn delete-btn">
-                                Удалить
-                            </button>
                         </div>
                     )) : (
                         <p>Корзина пуста</p>
@@ -81,9 +70,10 @@ export default function Cart() {
                 </div>
                 <div className="cart-total">
                     <p>Кол-во товаров: <b>{cart.products.reduce((acc, product) => acc + product.quantity, 0)}</b></p>
-                    <p>Сумма: <b>{cart.products.reduce((acc, product) => acc + product.price * product.quantity, 0)} руб.</b></p>
+                    <p>Сумма: <b>{cart.products.reduce((acc, product) => acc + product.cost * product.quantity, 0)} руб.</b>
+                    </p>
                     {cart.products.length > 0 && (
-                        <button className="create-order-btn" onClick={createOrder}>Создать заказ</button>
+                        <button className="create-order-btn">Создать заказ</button>
                     )}
                 </div>
             </div>
