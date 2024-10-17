@@ -4,7 +4,6 @@ import Navbar from "./navbar";
 
 export default function Cart() {
 
-    // Инициализация состояния корзины
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || {products: []});
 
     const updateCartQuantity = (productId, change) => {

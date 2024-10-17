@@ -30,6 +30,7 @@ export default function ProductPage() {
         fetchProduct();
     }, [id]);
 
+
     return (
         <div>
             <Navbar/>
