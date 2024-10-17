@@ -144,7 +144,7 @@ function ProductsList({selectedSortOption, searchQuery, addToCart, updateCartQua
 
 
     return (
-        <section className="product-page">
+        <section className="mainpage">
             {sortedProducts().map((product, i) => {
                 // Получаем корзину и проверяем наличие продукта в ней
                 const cart = JSON.parse(localStorage.getItem('cart')) || {products: []};
@@ -152,35 +152,34 @@ function ProductsList({selectedSortOption, searchQuery, addToCart, updateCartQua
                 const quantity = cartProduct ? cartProduct.quantity : 0;
 
                 return (
-                    <article key={product.id} className="product-card">
+                    <article key={product.id} className="mainpage__product">
                         <Link
                             to={{
                                 pathname: `/products/${product.id}`,
                                 state: { addToCart }
                             }}
-                            className="product-link"
+                            className="mainpage__product__link"
                             style={{textDecoration: 'none'}}
                         >
-                            <div className="product-info">
-                                <img src={product.image} alt="картинка"/>
-                                <p className="product-info-title"><b>{product.title}</b></p>
-                                <p>{product.description}</p>
+                            <div className="mainpage__product__info">
+                                <img src={product.image} alt="изображение товара"/>
+                                <p className="mainpage__product__info__title"><b>{product.title}</b></p>
                             </div>
                         </Link>
 
-                        <div className="product-card-bottom">
-                            <p className="product-price"><b>{product.cost} руб.</b></p>
+                        <div className="mainpage__product__bottom">
+                            <p className="mainpage__product__price"><b>{product.cost} руб.</b></p>
                             {quantity > 0 ? (
-                                <div className="quantity-controls">
-                                    <button className="little-btn"
+                                <div className="mainpage__product__bottom__quantity__controls">
+                                    <button className="btn--little"
                                             onClick={() => updateCartQuantity(product.id, -1)}>-
                                     </button>
-                                    <span className="product-quantity">{quantity}</span>
-                                    <button className="little-btn" onClick={() => updateCartQuantity(product.id, 1)}>+
+                                    <span className="mainpage__product__bottom__quantity">{quantity}</span>
+                                    <button className="btn--little" onClick={() => updateCartQuantity(product.id, 1)}>+
                                     </button>
                                 </div>
                             ) : (
-                                <button onClick={e => addToCart(e, product)} className="add-in-cart-btn">
+                                <button onClick={e => addToCart(e, product)} className="btn--add--in--cart">
                                     В корзину
                                 </button>
                             )}

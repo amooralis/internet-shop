@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {useLocation, useParams} from "react-router";
+import {useParams} from "react-router";
 import Navbar from "./navbar";
 import {useCart} from "./cartContext";
 import Footer from "./footer";
@@ -9,7 +9,7 @@ import Footer from "./footer";
 export default function ProductPage() {
     const [product, setProduct] = useState(null);
     const {id} = useParams();
-    const { addToCart } = useCart();
+    const { addToCart} = useCart();
 
 
     useEffect(() => {
@@ -33,17 +33,17 @@ export default function ProductPage() {
     return (
         <div>
             <Navbar/>
-            <div className="full-card-page">
-                <div className="full-card">
-                    <img src={product?.images[0].imagePath} alt="картинка"/>
-                    <div className="full-card-info">
+            <div className="product__page">
+                <div className="product">
+                    <img src={product?.images[0].imagePath} alt="изображение товара"/>
+                    <div className="product__info">
                         <div>
-                            <p className="full-card-title"><b>{product?.title}</b></p>
-                            <p className="full-card-description">{product?.description}</p>
+                            <p className="product__title"><b>{product?.title}</b></p>
+                            <p className="product__description">{product?.description}</p>
                         </div>
-                        <div className="full-card-bottom">
-                            <p className="full-card-price"><b>{product?.cost} руб.</b></p>
-                            <button onClick={e => addToCart(e, product)} className="full-card-add-in-cart-btn">
+                        <div className="product__bottom">
+                            <p className="product__price"><b>{product?.cost} руб.</b></p>
+                            <button onClick={e => addToCart(e, product)} className="product__btn--add--in--cart">
                                 В корзину
                             </button>
                         </div>
