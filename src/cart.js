@@ -1,28 +1,12 @@
 import './App.css';
 import {useState} from "react";
 import Navbar from "./navbar";
+import {useCart} from "./cartContext";
 
 export default function Cart() {
 
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || {products: []});
+    const { cart, setCart, updateCartQuantity } = useCart();
 
-    const updateCartQuantity = (productId, change) => {
-        let updatedCart = {...cart};
-        const productIndex = updatedCart.products.findIndex(p => p.id === productId);
-
-        if (productIndex !== -1) {
-            updatedCart.products[productIndex].quantity += change;
-
-            // Если количество стало 0, удаляем товар из корзины
-            if (updatedCart.products[productIndex].quantity <= 0) {
-                updatedCart.products.splice(productIndex, 1);
-            }
-
-            // Обновляем состояние и сохраняем изменения в localStorage
-            setCart(updatedCart);
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
-        }
-    };
 
     const deleteFromCart = (productId) => {
         let updatedCart = { ...cart };
@@ -47,7 +31,6 @@ export default function Cart() {
                                     product.image ? (<img src={product?.image} alt="картинка"/>) :
                                         (<img src={product?.images[0].imagePath} alt="картинка"/>)
                                 }
-                                {/*<img src={product?.image} alt="картинка"/>*/}
 
                                 <div>
                                     <p className="cart__position__title"><b>{product.title}</b></p>
