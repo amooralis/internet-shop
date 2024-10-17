@@ -43,8 +43,11 @@ export default function Cart() {
 
                             <div className="cart__position__inner" key={product.id}>
 
-
-                                <img src={product?.image} alt="картинка"/>
+                                {
+                                    product.image ? (<img src={product?.image} alt="картинка"/>) :
+                                        (<img src={product?.images[0].imagePath} alt="картинка"/>)
+                                }
+                                {/*<img src={product?.image} alt="картинка"/>*/}
 
                                 <div>
                                     <p className="cart__position__title"><b>{product.title}</b></p>

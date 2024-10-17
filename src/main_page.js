@@ -6,12 +6,13 @@ import search from "./search.png"
 import sort from "./sort.png"
 import {Link} from "react-router-dom";
 import Footer from "./footer";
+import {useCart} from "./cartContext";
 
 export default function MainPage() {
     const [selectedSortOption, setSelectedSortOption] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || {products: []});
-
+    // const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || {products: []});
+    const { cart, setCart, addToCart, updateCartQuantity } = useCart();
     const handleSortChange = (value) => {
         setSelectedSortOption(value);
     };
@@ -21,38 +22,38 @@ export default function MainPage() {
     };
 
 
-    const addToCart = (event, product) => {
-        event.preventDefault();
-
-        let updatedCart = {...cart};
-        const existingProduct = updatedCart.products.find(p => p.id === product.id);
-
-        if (existingProduct) {
-            existingProduct.quantity += 1;
-        } else {
-            product.quantity = 1;
-            updatedCart.products.push(product);
-        }
-
-        setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-    };
-
-    const updateCartQuantity = (productId, change) => {
-        let updatedCart = {...cart};
-        const productIndex = updatedCart.products.findIndex(p => p.id === productId);
-
-        if (productIndex !== -1) {
-            updatedCart.products[productIndex].quantity += change;
-
-            if (updatedCart.products[productIndex].quantity <= 0) {
-                updatedCart.products.splice(productIndex, 1);
-            }
-
-            setCart(updatedCart);
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
-        }
-    };
+    // const addToCart = (event, product) => {
+    //     event.preventDefault();
+    //
+    //     let updatedCart = {...cart};
+    //     const existingProduct = updatedCart.products.find(p => p.id === product.id);
+    //
+    //     if (existingProduct) {
+    //         existingProduct.quantity += 1;
+    //     } else {
+    //         product.quantity = 1;
+    //         updatedCart.products.push(product);
+    //     }
+    //
+    //     setCart(updatedCart);
+    //     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    // };
+    //
+    // const updateCartQuantity = (productId, change) => {
+    //     let updatedCart = {...cart};
+    //     const productIndex = updatedCart.products.findIndex(p => p.id === productId);
+    //
+    //     if (productIndex !== -1) {
+    //         updatedCart.products[productIndex].quantity += change;
+    //
+    //         if (updatedCart.products[productIndex].quantity <= 0) {
+    //             updatedCart.products.splice(productIndex, 1);
+    //         }
+    //
+    //         setCart(updatedCart);
+    //         localStorage.setItem('cart', JSON.stringify(updatedCart));
+    //     }
+    // };
 
     // Обновление состояния корзины при изменении localStorage
     useEffect(() => {
@@ -60,7 +61,7 @@ export default function MainPage() {
         if (storedCart) {
             setCart(storedCart);
         }
-    }, []);
+    }, [setCart]);
 
 
     return (
