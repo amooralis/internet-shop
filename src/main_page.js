@@ -11,8 +11,7 @@ import {useCart} from "./cartContext";
 export default function MainPage() {
     const [selectedSortOption, setSelectedSortOption] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
-    // const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || {products: []});
-    const { cart, setCart, addToCart, updateCartQuantity } = useCart();
+    const {cart, setCart, addToCart, updateCartQuantity} = useCart();
     const handleSortChange = (value) => {
         setSelectedSortOption(value);
     };
@@ -22,7 +21,6 @@ export default function MainPage() {
     };
 
 
-    // Обновление состояния корзины при изменении localStorage
     useEffect(() => {
         const storedCart = JSON.parse(localStorage.getItem('cart'));
         if (storedCart) {
@@ -124,7 +122,7 @@ function ProductsList({selectedSortOption, searchQuery, addToCart, updateCartQua
                         <Link
                             to={{
                                 pathname: `/products/${product.id}`,
-                                state: { addToCart }
+                                state: {addToCart}
                             }}
                             className="mainpage__product__link"
                             style={{textDecoration: 'none'}}

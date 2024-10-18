@@ -1,15 +1,12 @@
 import './App.css';
-import {useState} from "react";
 import Navbar from "./navbar";
 import {useCart} from "./cartContext";
 
 export default function Cart() {
-
-    const { cart, setCart, updateCartQuantity } = useCart();
-
+    const {cart, setCart, updateCartQuantity} = useCart();
 
     const deleteFromCart = (productId) => {
-        let updatedCart = { ...cart };
+        let updatedCart = {...cart};
         updatedCart.products = updatedCart.products.filter(p => p.id !== productId);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
@@ -41,7 +38,8 @@ export default function Cart() {
                                                 className="cart__btn">-
                                         </button>
                                         <p className="cart__btns__quantity">{product.quantity}</p>
-                                        <button onClick={() => updateCartQuantity(product.id, 1)} className="cart__btn">+
+                                        <button onClick={() => updateCartQuantity(product.id, 1)}
+                                                className="cart__btn">+
                                         </button>
                                     </div>
                                 </div>

@@ -18,13 +18,17 @@ body {
 
 :root {
     --color-black: #000000;
-    --color-dark-grey:  #181818;
+    --color-dark-grey: #181818;
     --color-beige: #F4DFC8;
     --color-light-beige: #F4EAE0;
     --color-cream: #FAF6F0;
     --color-green: lawngreen;
     --color-red: red;
     --color-white: white;
+}
+
+button {
+    border: none;
 }
 
 .header {
@@ -41,12 +45,11 @@ body {
 }
 
 
-
 a {
     color: inherit;
 }
 
-.page{
+.page {
     background-color: var(--color-black);
 }
 
@@ -79,23 +82,24 @@ a {
     top: -5px;
     right: -10px;
 }
-.nav__cart__container{
+
+.nav__cart__container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--color-beige);
     margin-right: 10px;
 }
 
 .nav__cart__img__container {
     position: relative;
-    display: block; /* Изменяем на блочный элемент */
-    margin: 0 auto; /* Центрируем элемент по горизонтали */
+    display: block;
+    margin: 0 auto;
 }
 
 
 h2 {
     font-size: 30px;
-    /*margin-left: 5%;*/
     background-color: var(--color-black);
     padding: 5px 50px;
     color: var(--color-cream);
@@ -103,7 +107,6 @@ h2 {
 
 .main-first-line {
     padding: 10px 0px 0px 0px;
-    /*margin: 10px 0px;*/
     display: flex;
     flex-direction: row;
     background-color: var(--color-black);
@@ -132,7 +135,6 @@ h2 {
     padding: 5px;
     border: 3px solid var(--color-beige);
     border-radius: 5px;
-    /*width: 20%;*/
     min-width: 100px;
     font-size: 16px;
     background-color: var(--color-cream);
@@ -161,7 +163,7 @@ h2 {
     padding: 20px 15px;
     margin: 15px;
     height: 95%;
-    background-color:  var(--color-dark-grey);
+    background-color: var(--color-dark-grey);
     justify-content: space-between;
     min-width: 250px;
     max-height: 390px;
@@ -194,7 +196,7 @@ h2 {
     margin: 10px 0;
 }
 
-.mainpage__product__price{
+.mainpage__product__price {
     cursor: default;
 }
 
@@ -207,10 +209,8 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*justify-content: space-between;*/
     text-align: center;
     font-size: 20px;
-    /*color: orangevar(--color-red);*/
     color: var(--color-light-beige);
 }
 
@@ -236,7 +236,7 @@ h2 {
     font-size: 20px;
 }
 
-.mainpage__product__bottom__quantity{
+.mainpage__product__bottom__quantity {
     background-color: var(--color-black);
     padding: 3px 5px;
 }
@@ -244,7 +244,6 @@ h2 {
 
 .product__page {
     display: flex;
-    /*align-items: center;*/
     justify-content: center;
     background-color: var(--color-black);
 }
@@ -252,7 +251,7 @@ h2 {
 .product {
     display: flex;
     flex-direction: row;
-    background-color:  var(--color-dark-grey);
+    background-color: var(--color-dark-grey);
     border: 3px solid var(--color-beige);
     border-radius: 20px;
     width: 80%;
@@ -262,8 +261,6 @@ h2 {
 
 
 .product img {
-    /*width: 420px;*/
-    /*height: 100%;*/
     border-radius: 20px;
 }
 
@@ -299,7 +296,7 @@ h2 {
 }
 
 
-.cart__page{
+.cart__page {
     display: flex;
     flex-direction: row;
     background-color: var(--color-black);
@@ -313,49 +310,6 @@ h2 {
     flex-direction: column;
 }
 
-/*.cart__position {*/
-/*    display: flex;*/
-/*    !*flex-direction: column;*!*/
-/*    border: 3px solid var(--color-beige);*/
-/*    border-radius: 10px;*/
-/*    padding: 20px 15px;*/
-/*    margin: 15px;*/
-/*    background-color:  var(--color-dark-grey);*/
-/*    color: var(--color-light-beige);*/
-/*}*/
-
-/*.cart__position__inner {*/
-/*    display: grid;*/
-/*    !*grid-template-columns: 1fr 1fr 1fr 150px 150px;*!*/
-/*    align-items: center;*/
-/*    text-align: center;*/
-/*    justify-content: center;*/
-/*    !*padding: 20px 15px;*!*/
-/*    !*margin: 15px;*!*/
-/*}*/
-
-/*.cart__position__title {*/
-/*    background-color: darkorange;*/
-/*    border-radius: 5px;*/
-/*    padding: 5px;*/
-/*    color: var(--color-black);*/
-/*    !*margin: 0px 30px;*!*/
-/*    !*width: 80%;*!*/
-/*    text-align: center;*/
-/*}*/
-
-/*.cart__position img, .order-products-img {*/
-/*    height: 160px;*/
-/*    width: 160px;*/
-/*    border-radius: 10px;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    justify-self: center;*/
-/*}*/
-
-/*.cart__position__price {*/
-/*    font-size: 20px;*/
-/*}*/
 
 .cart__total {
     display: flex;
@@ -366,9 +320,8 @@ h2 {
     border-radius: 10px;
     padding: 20px 15px;
     margin: 15px;
-    background-color:  var(--color-dark-grey);
+    background-color: var(--color-dark-grey);
     color: var(--color-light-beige);
-    /*height: 250px;*/
     font-size: 24px;
 }
 
@@ -380,7 +333,6 @@ h2 {
 
 .cart__btn, .btn--delete {
     border-radius: 15px;
-
     font-weight: bold;
     font-size: 18px;
     width: 30px;
@@ -423,48 +375,43 @@ h2 {
 }
 
 
-
-
-
-.footer, .footer__contacts{
+.footer, .footer__contacts {
     display: flex;
     flex-direction: column;
 }
 
-.footer{
-   padding: 20px 50px;
+.footer {
+    padding: 20px 50px;
     background-color: var(--color-beige);
-    color:  var(--color-dark-grey);
+    color: var(--color-dark-grey);
     align-items: flex-end;
     margin-top: 20px;
     min-width: 360px;
 }
 
-.footer__title{
+.footer__title {
     font-size: 28px;
     cursor: default;
 }
 
-.footer__contacts{
+.footer__contacts {
     font-size: 20px;
 }
 
-.footer__contacts__row{
+.footer__contacts__row {
     display: flex;
     flex-direction: row;
     padding: 10px 0px;
     text-decoration: none;
 }
 
-.footer__contacts__row img{
+.footer__contacts__row img {
     width: 24px;
     height: 24px;
     margin-right: 13px;
 }
 
-/*/////////////////////////////////////////////////////////////////////////*/
 
-/* Стандартный стиль для больших экранов */
 @media (min-width: 1025px) {
 
     .navbar {
@@ -480,13 +427,12 @@ h2 {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         border: 3px solid var(--color-beige);
         border-radius: 20px;
         width: 95%;
         margin: 50px 0px;
         padding: 30px;
-        /*max-height: 700px;*/
     }
 
     .product img {
@@ -504,8 +450,6 @@ h2 {
         height: 100%;
         font-size: 24px;
         color: var(--color-beige);
-        /*margin-left: 30px;*/
-        /*max-width: 550px;*/
     }
 
     .product__title {
@@ -557,12 +501,11 @@ h2 {
 
     .cart__position {
         display: flex;
-        /*flex-direction: column;*/
         border: 3px solid var(--color-beige);
         border-radius: 10px;
         padding: 20px 15px;
         margin: 15px;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         color: var(--color-light-beige);
         min-width: 360px;
     }
@@ -570,7 +513,7 @@ h2 {
 
     .cart__position__inner {
         display: grid;
-        grid-template-columns: 120px 1fr 40px; /* Три колонки: изображение, контент, кнопка удаления */
+        grid-template-columns: 120px 1fr 40px;
         grid-template-rows: auto;
         gap: 20px;
         align-items: center;
@@ -582,7 +525,7 @@ h2 {
 
     .cart__position img {
         width: 100%;
-        max-width: 120px; /* Фиксированная ширина изображения */
+        max-width: 120px;
         height: auto;
         border-radius: 10px;
         justify-self: center;
@@ -613,7 +556,7 @@ h2 {
         border-radius: 10px;
         padding: 20px 15px;
         margin: 15px;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         color: var(--color-light-beige);
         height: 200px;
         font-size: 24px;
@@ -647,8 +590,8 @@ h2 {
     }
 
     .btn--delete {
-        grid-column: 3; /* Указываем, что кнопка удаления находится в третьей колонке */
-        align-self: start; /* Кнопка удаления будет в правом верхнем углу */
+        grid-column: 3;
+        align-self: start;
         justify-self: end;
         background-color: var(--color-red);
         border: 2px solid var(--color-red);
@@ -677,7 +620,7 @@ h2 {
 
 }
 
-/* Для экранов шириной 1024px и выше */
+
 @media (max-width: 1024px) {
     .navbar {
         justify-content: space-between;
@@ -691,7 +634,7 @@ h2 {
         display: flex;
         flex-direction: row;
         align-items: center;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         border: 3px solid var(--color-beige);
         border-radius: 20px;
         width: 95%;
@@ -768,12 +711,11 @@ h2 {
 
     .cart__position {
         display: flex;
-        /*flex-direction: column;*/
         border: 3px solid var(--color-beige);
         border-radius: 10px;
         padding: 20px 15px;
         margin: 15px;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         color: var(--color-light-beige);
         min-width: 360px;
     }
@@ -781,7 +723,7 @@ h2 {
 
     .cart__position__inner {
         display: grid;
-        grid-template-columns: 120px 1fr 40px; /* Три колонки: изображение, контент, кнопка удаления */
+        grid-template-columns: 120px 1fr 40px;
         grid-template-rows: auto;
         gap: 20px;
         align-items: center;
@@ -793,7 +735,7 @@ h2 {
 
     .cart__position img {
         width: 100%;
-        max-width: 120px; /* Фиксированная ширина изображения */
+        max-width: 120px;
         height: auto;
         border-radius: 10px;
         justify-self: center;
@@ -824,7 +766,7 @@ h2 {
         border-radius: 10px;
         padding: 20px 15px;
         margin: 15px;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         color: var(--color-light-beige);
         height: 200px;
         font-size: 24px;
@@ -842,7 +784,6 @@ h2 {
 
     .cart__btn, .btn--delete {
         border-radius: 15px;
-
         font-weight: bold;
         font-size: 18px;
         width: 30px;
@@ -858,8 +799,8 @@ h2 {
     }
 
     .btn--delete {
-        grid-column: 3; /* Указываем, что кнопка удаления находится в третьей колонке */
-        align-self: start; /* Кнопка удаления будет в правом верхнем углу */
+        grid-column: 3;
+        align-self: start;
         justify-self: end;
         background-color: var(--color-red);
         border: 2px solid var(--color-red);
@@ -888,7 +829,6 @@ h2 {
 
 }
 
-/* Для экранов шириной 768px и выше (планшеты) */
 @media (max-width: 768px) {
 
     .navbar {
@@ -903,16 +843,14 @@ h2 {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         border: 3px solid var(--color-beige);
         border-radius: 20px;
         width: 90%;
         margin: 20px 0px;
         padding: 20px;
         min-width: 280px;
-        /*min-height: 1000px;*/
     }
-
 
     .product img {
         margin-right: 0px;
@@ -984,7 +922,7 @@ h2 {
         border-radius: 10px;
         padding: 20px;
         margin: 15px;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         color: var(--color-light-beige);
         min-width: 360px;
         width: 90%;
@@ -992,7 +930,7 @@ h2 {
 
     .cart__position__inner {
         display: grid;
-        grid-template-columns: 120px 1fr 40px; /* Три колонки: изображение, контент, кнопка удаления */
+        grid-template-columns: 120px 1fr 40px;
         grid-template-rows: auto;
         gap: 20px;
         align-items: center;
@@ -1003,7 +941,7 @@ h2 {
 
     .cart__position img {
         width: 100%;
-        max-width: 120px; /* Фиксированная ширина изображения */
+        max-width: 120px;
         height: auto;
         border-radius: 10px;
         justify-self: center;
@@ -1033,7 +971,7 @@ h2 {
         border-radius: 10px;
         padding: 20px 15px;
         margin: 15px;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         color: var(--color-light-beige);
         height: 200px;
         font-size: 24px;
@@ -1067,8 +1005,8 @@ h2 {
     }
 
     .btn--delete {
-        grid-column: 3; /* Указываем, что кнопка удаления находится в третьей колонке */
-        align-self: start; /* Кнопка удаления будет в правом верхнем углу */
+        grid-column: 3;
+        align-self: start;
         justify-self: end;
         background-color: var(--color-red);
         border: 2px solid var(--color-red);
@@ -1098,18 +1036,18 @@ h2 {
 
 }
 
-/* Для экранов шириной 480px и выше (мобильные телефоны) */
+
 @media (max-width: 480px) {
     .navbar {
         justify-content: space-between;
     }
 
-    .search-part img{
+    .search-part img {
         max-width: 20px;
         max-height: 20px;
     }
 
-    .search-input{
+    .search-input {
         max-width: 110px;
         min-width: 90px;
         font-size: 14px;
@@ -1129,14 +1067,13 @@ h2 {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         border: 3px solid var(--color-beige);
         border-radius: 20px;
         width: 90%;
         margin: 20px 0px;
         padding: 20px;
         min-width: 360px;
-        /*max-height: 1200px;*/
     }
 
     .product img {
@@ -1210,20 +1147,18 @@ h2 {
 
     .cart__position {
         display: flex;
-        /*flex-direction: column;*/
         border: 3px solid var(--color-beige);
         border-radius: 10px;
         padding: 20px 15px;
         margin: 15px;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         color: var(--color-light-beige);
         min-width: 360px;
     }
 
-
     .cart__position__inner {
         display: grid;
-        grid-template-columns: 120px 1fr 40px; /* Три колонки: изображение, контент, кнопка удаления */
+        grid-template-columns: 120px 1fr 40px;
         grid-template-rows: auto;
         gap: 20px;
         align-items: center;
@@ -1231,10 +1166,9 @@ h2 {
         min-height: 150px;
     }
 
-
     .cart__position img {
         width: 100%;
-        max-width: 120px; /* Фиксированная ширина изображения */
+        max-width: 120px;
         height: auto;
         border-radius: 10px;
         justify-self: center;
@@ -1265,7 +1199,7 @@ h2 {
         border-radius: 10px;
         padding: 20px 15px;
         margin: 15px;
-        background-color:  var(--color-dark-grey);
+        background-color: var(--color-dark-grey);
         color: var(--color-light-beige);
         height: 200px;
         font-size: 24px;
@@ -1299,8 +1233,8 @@ h2 {
     }
 
     .btn--delete {
-        grid-column: 3; /* Указываем, что кнопка удаления находится в третьей колонке */
-        align-self: start; /* Кнопка удаления будет в правом верхнем углу */
+        grid-column: 3;
+        align-self: start;
         justify-self: end;
         background-color: var(--color-red);
         border: 2px solid var(--color-red);

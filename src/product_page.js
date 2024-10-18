@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
-import { useParams } from "react-router";
+import {useParams} from "react-router";
 import Navbar from "./navbar";
-import { useCart } from "./cartContext";
+import {useCart} from "./cartContext";
 import Footer from "./footer";
 
 export default function ProductPage() {
     const [product, setProduct] = useState(null);
-    const { id } = useParams();
-    const { addToCart } = useCart(); // Используйте addToCart из контекста
+    const {id} = useParams();
+    const {addToCart} = useCart();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -29,10 +29,10 @@ export default function ProductPage() {
 
     return (
         <div>
-            <Navbar />
+            <Navbar/>
             <div className="product__page">
                 <div className="product">
-                    <img src={product?.images[0].imagePath} alt="изображение товара" />
+                    <img src={product?.images[0].imagePath} alt="изображение товара"/>
                     <div className="product__info">
                         <div>
                             <p className="product__title"><b>{product?.title}</b></p>
@@ -47,7 +47,7 @@ export default function ProductPage() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 }
