@@ -6,15 +6,14 @@
 
 
 
-
 Главная страница магазина с поиском и сортировкой товаров, добавлением их в корзину и изменением количества товаров в корзине
-![Снимок экрана 2024-10-18 в 16.18.40.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fmw%2Fddn0b8td2ss97klx9lbbc2qr0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_X81pXT%2F%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-10-18%20%D0%B2%2016.18.40.png)
+![main-screen.png](src%2Fimages%2Fmain-screen.png)
 
 Сверху на навигационной панели при клике на корзину происходит переход на страницу корзины с добавленными товарами,
 где можно изменять количество и удалять полностью категории товаров
-![Снимок экрана 2024-10-18 в 16.21.19.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fmw%2Fddn0b8td2ss97klx9lbbc2qr0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_D3QaNP%2F%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-10-18%20%D0%B2%2016.21.19.png)
+![cart-screen.png](src%2Fimages%2Fcart-screen.png)
 
 При клике на название магазина происходит переход на главную страницу
 
 При клике на изображение товара можно перейти на страницу конкретного товара
-![Снимок экрана 2024-10-18 в 16.24.25.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fmw%2Fddn0b8td2ss97klx9lbbc2qr0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_b5bCoe%2F%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-10-18%20%D0%B2%2016.24.25.png)
+![product-screen.png](src%2Fimages%2Fproduct-screen.png)

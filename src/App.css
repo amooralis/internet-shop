@@ -190,6 +190,11 @@ h2 {
     background-color: white;
 }
 
+.cart__position__inner img{
+    background-color: white;
+    border-radius: 20px;
+}
+
 
 .mainpage__product__info__title {
     background-color: darkorange;
