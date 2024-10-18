@@ -190,6 +190,7 @@ h2 {
     background-color: white;
 }
 
+
 .mainpage__product__info__title {
     background-color: darkorange;
     border-radius: 5px;
@@ -263,8 +264,10 @@ h2 {
 
 
 .product img {
+    background-color: white;
     border-radius: 20px;
 }
+
 
 .product__info {
     display: flex;

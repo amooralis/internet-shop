@@ -31,7 +31,7 @@ export default function ProductPage() {
             <Navbar/>
             <div className="product__page">
                 <div className="product">
-                    <img src={product?.images[0].imagePath} alt="изображение товара"/>
+                    <img className="product__image"src={product?.images[0].imagePath} alt="изображение товара"/>
                     <div className="product__info">
                         <div>
                             <p className="product__title"><b>{product?.title}</b></p>
