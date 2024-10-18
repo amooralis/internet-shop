@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router";
 import Navbar from "./navbar";
-import {useCart} from "./cartContext";
+import {useCart} from "../cartContext";
 import Footer from "./footer";
 
 export default function ProductPage() {
@@ -19,7 +19,6 @@ export default function ProductPage() {
                     },
                 });
                 setProduct(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.error("Error fetching products", error);
             }

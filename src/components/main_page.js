@@ -1,12 +1,12 @@
-import './App.css';
+import '../App.css';
 import Navbar from "./navbar";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import search from "./search.png"
-import sort from "./sort.png"
+import search from "../images/search.png"
+import sort from "../images/sort.png"
 import {Link} from "react-router-dom";
 import Footer from "./footer";
-import {useCart} from "./cartContext";
+import {useCart} from "../cartContext";
 
 export default function MainPage() {
     const [selectedSortOption, setSelectedSortOption] = useState(0);
@@ -85,7 +85,6 @@ function ProductsList({selectedSortOption, searchQuery, addToCart, updateCartQua
                         limit: 10,
                     },
                 });
-                console.log(response);
                 const filteredProducts = response.data.products.filter((product) =>
                     product.title.toLowerCase().includes(searchQuery.toLowerCase())
                 );

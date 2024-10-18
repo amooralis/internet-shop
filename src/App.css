@@ -152,6 +152,7 @@ h2 {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     background-color: var(--color-black);
     min-width: 360px;
+    min-height: 100vh;
 }
 
 .mainpage__product {
@@ -166,6 +167,7 @@ h2 {
     background-color: var(--color-dark-grey);
     justify-content: space-between;
     min-width: 250px;
+    max-width: 300px;
     max-height: 390px;
 }
 

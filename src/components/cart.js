@@ -1,6 +1,6 @@
-import './App.css';
+import '../App.css';
 import Navbar from "./navbar";
-import {useCart} from "./cartContext";
+import {useCart} from "../cartContext";
 
 export default function Cart() {
     const {cart, setCart, updateCartQuantity} = useCart();
@@ -10,7 +10,6 @@ export default function Cart() {
         updatedCart.products = updatedCart.products.filter(p => p.id !== productId);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
-        console.log(updatedCart);
     };
 
 
@@ -50,7 +49,7 @@ export default function Cart() {
                             </div>
                         </div>
                     )) : (
-                        <p>Корзина пуста</p>
+                        <></>
                     )}
                 </div>
                 <div className="cart__total">

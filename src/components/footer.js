@@ -1,7 +1,7 @@
-import './App.css';
-import mail from "./mail.png"
-import phone from "./phone.png"
-import tg from "./tg.png"
+import '../App.css';
+import mail from "../images/mail.png"
+import phone from "../images/phone.png"
+import tg from "../images/tg.png"
 
 
 export default function Footer() {

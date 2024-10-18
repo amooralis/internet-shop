@@ -1,5 +1,5 @@
-import './App.css';
-import basket from "./basket.png"
+import '../App.css';
+import basket from "../images/basket.png"
 import {useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react";
 
