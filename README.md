@@ -1,18 +1,20 @@
 
-In the project directory, you can run:
+Запуск программы:
+
 ### `npm i`
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-<img width="1440" alt="Снимок экрана 2024-05-10 в 18 36 10" src="https://github.com/amooralis/Internet-shop/assets/71789031/43466260-1a3e-453c-b74c-76709b36ab08">
 
 
-<img width="1422" alt="Снимок экрана 2024-05-10 в 18 28 42" src="https://github.com/amooralis/Internet-shop/assets/71789031/c6b1c576-4e89-4c09-89e1-24c585376f59">
 
+Главная страница магазина с поиском и сортировкой товаров, добавлением их в корзину и изменением количества товаров в корзине
+![Снимок экрана 2024-10-18 в 16.18.40.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fmw%2Fddn0b8td2ss97klx9lbbc2qr0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_X81pXT%2F%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-10-18%20%D0%B2%2016.18.40.png)
 
-<img width="1421" alt="Снимок экрана 2024-05-10 в 18 32 03" src="https://github.com/amooralis/Internet-shop/assets/71789031/962d1c61-a0ef-471b-aa70-5de4259b0e88">
+Сверху на навигационной панели при клике на корзину происходит переход на страницу корзины с добавленными товарами,
+где можно изменять количество и удалять полностью категории товаров
+![Снимок экрана 2024-10-18 в 16.21.19.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fmw%2Fddn0b8td2ss97klx9lbbc2qr0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_D3QaNP%2F%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-10-18%20%D0%B2%2016.21.19.png)
+
+При клике на название магазина происходит переход на главную страницу
+
+При клике на изображение товара можно перейти на страницу конкретного товара
+![Снимок экрана 2024-10-18 в 16.24.25.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fmw%2Fddn0b8td2ss97klx9lbbc2qr0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_b5bCoe%2F%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-10-18%20%D0%B2%2016.24.25.png)
