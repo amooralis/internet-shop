@@ -20,11 +20,11 @@ export default function Navbar() {
     }, [storedCart]);
 
     const redirectToCart = () => {
-        navigate('/cart');
+        navigate('/internet-shop/cart');
     };
 
     const redirectToMain = () => {
-        navigate('/');
+        navigate('/internet-shop');
     }
 
 
