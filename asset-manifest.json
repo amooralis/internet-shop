@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/internet-shop/static/css/main.473e4ccc.css",
+    "main.js": "/internet-shop/static/js/main.989132f0.js",
+    "static/media/phone.png": "/internet-shop/static/media/phone.45d87b605942486df7cf.png",
+    "static/media/tg.png": "/internet-shop/static/media/tg.5f84cad9a41e7e637466.png",
+    "static/media/basket.png": "/internet-shop/static/media/basket.d6d238baa05b78193ce0.png",
+    "static/media/mail.png": "/internet-shop/static/media/mail.7c51d750e2b34c3ffa38.png",
+    "static/media/search.png": "/internet-shop/static/media/search.d205fc5e9f8e23093787.png",
+    "index.html": "/internet-shop/index.html",
+    "main.473e4ccc.css.map": "/internet-shop/static/css/main.473e4ccc.css.map",
+    "main.989132f0.js.map": "/internet-shop/static/js/main.989132f0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.473e4ccc.css",
+    "static/js/main.989132f0.js"
+  ]
+}
