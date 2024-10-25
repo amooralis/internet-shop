@@ -1,4 +1,5 @@
 {
+  "homepage": "http://amooralis.github.io/internet-shop",
   "proxy": "http://localhost:3456",
   "dbr": "yarn sequelize db:drop && yarn sequelize db:create && yarn sequelize db:migrate && yarn sequelize db:seed:all",
   "name": "day10",
@@ -33,7 +34,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
