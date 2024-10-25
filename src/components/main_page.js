@@ -120,7 +120,7 @@ function ProductsList({selectedSortOption, searchQuery, addToCart, updateCartQua
                     <article key={product.id} className="mainpage__product">
                         <Link
                             to={{
-                                pathname: `/products/${product.id}`,
+                                pathname: `internet-shop/products/${product.id}`,
                                 state: {addToCart}
                             }}
                             className="mainpage__product__link"
